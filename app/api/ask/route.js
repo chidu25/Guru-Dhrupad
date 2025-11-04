@@ -27,7 +27,7 @@ export async function POST(request) {
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': process.env.YOUR_SITE_URL || 'http://localhost:3000',
+        'HTTP-Referer': 'https://guru-jet.vercel.app',
         'X-Title': 'Guru-Dhrupad',
       },
       body: JSON.stringify({
