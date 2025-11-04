@@ -21,13 +21,24 @@ export async function POST(request) {
       )
     }
 
+    const siteUrl =
+      process.env.YOUR_SITE_URL ||
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      process.env.SITE_URL
+
+    const httpReferer =
+      siteUrl ||
+      request.headers.get('origin') ||
+      request.headers.get('referer') ||
+      'http://localhost:3000'
+
     // Call OpenRouter API
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://guru-jet.vercel.app',
+        'HTTP-Referer': httpReferer,
         'X-Title': 'Guru-Dhrupad',
       },
       body: JSON.stringify({
